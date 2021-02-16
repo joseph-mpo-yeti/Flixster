@@ -1,7 +1,7 @@
-# Flixter
+# Flixster
 Flixter is an app that allows users to browse movies from the [The Movie Database API](https://developers.themoviedb.org/).
 
-## Flix Part 1
+## Flixster Part 1
 
 #### REQUIRED (10pts)
 - [ ] (10pts) User can view a list of movies (title, poster image, and overview) currently playing in theaters from the Movie Database API.
