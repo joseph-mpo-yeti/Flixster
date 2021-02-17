@@ -17,12 +17,17 @@ Flixter is an app that allows users to browse movies from the [The Movie Databas
 
 ### App Walkthough GIF
 
-![Flixster portrait](flixster_portrait.gif)
+#### Portrait
 
-![Flixster landscape](flixster_landscape.gif)
+<img src="flixster_portrait.gif" width="300" />
+
+#### Landscape
+
+<img src="flixster_landscape.gif" height="300" />
 
 ### Notes
-Describe any challenges encountered while building the app.
+
+The most challenging part was uploading the Walkthrough GIFs as GitHub limits file sizes and one recording showing the screen rotate would execeed that limit.
 
 ### Open-source libraries used
 
