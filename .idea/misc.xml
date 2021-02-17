@@ -4,8 +4,10 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/poster_placeholder.xml" value="0.16510416666666666" />
-        <entry key="app/src/main/res/layout-land/item_movie_layout.xml" value="0.32968369829683697" />
+        <entry key="app/src/main/res/layout-land/item_movie_full_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/layout-land/item_movie_layout.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/item_movie_full_layout.xml" value="0.5" />
         <entry key="app/src/main/res/layout/item_movie_layout.xml" value="0.5" />
       </map>
     </option>

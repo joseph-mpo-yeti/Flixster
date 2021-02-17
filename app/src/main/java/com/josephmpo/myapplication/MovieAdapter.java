@@ -28,16 +28,39 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         this.context = context;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        if (movies.get(position).getVoteAverage() > 5) {
+            return 1;
+        }
+
+        return 0;
+    }
+
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_layout, parent, false);
+        View v;
+        switch (viewType){
+            case 1:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_full_layout, parent, false);
+                break;
+            default:
+                v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_movie_layout, parent, false);
+        }
+
         return new ViewHolder(v);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-        holder.bind(movies.get(position));
+        switch (holder.getItemViewType()){
+            case 1:
+                holder.bindFull(movies.get(position));
+                break;
+            default:
+                holder.bind(movies.get(position));
+        }
     }
 
     @Override
@@ -61,14 +84,25 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         public void bind(Movie m) {
             titleTextView.setText(m.getTitle());
             overviewTextView.setText(m.getOverview());
-            String imageURL;
             if(context.getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-                imageURL = m.getBackdropPath();
+                Glide.with(context)
+                        .load(m.getBackdropPath())
+                        .placeholder(R.drawable.placeholder)
+                        .centerCrop()
+                        .into(posterImageView);
             } else {
-                imageURL = m.getPosterPath();
+                Glide.with(context)
+                        .load(m.getPosterPath())
+                        .placeholder(R.drawable.placeholder_portrait)
+                        .into(posterImageView);
             }
+        }
+
+        public void bindFull(Movie m) {
             Glide.with(context)
-                    .load(imageURL)
+                    .load(m.getBackdropPath())
+                    .placeholder(R.drawable.placeholder)
+                    .centerCrop()
                     .into(posterImageView);
         }
     }
