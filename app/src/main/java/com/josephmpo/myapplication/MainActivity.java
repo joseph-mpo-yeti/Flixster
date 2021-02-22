@@ -1,12 +1,20 @@
 package com.josephmpo.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.view.View;
 
+import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
@@ -15,13 +23,15 @@ import com.josephmpo.myapplication.models.Movie;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
+import org.parceler.Parcels;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Headers;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements MovieAdapter.OnItemClickListener {
 
     public static final String MOVIE_DB_URL = "https://api.themoviedb.org/3/movie/now_playing";
     public static final String API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed";
@@ -35,7 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         movies = new ArrayList<>();
 
-        MovieAdapter adapter = new MovieAdapter(movies, this);
+        MovieAdapter adapter = new MovieAdapter(movies, this, this);
         RecyclerView rv = findViewById(R.id.movies_rv);
 
         rv.setAdapter(adapter);
@@ -67,7 +77,22 @@ public class MainActivity extends AppCompatActivity {
                 Log.d(TAG, "It failed");
             }
         });
+    }
 
-//
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.movie_list_menu, menu);
+        MenuItem search = menu.findItem(R.id.app_bar_search);
+        final View searchView = search.getActionView();
+        search.expandActionView();
+        searchView.requestFocus();
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public void onMovieItemClicked(int position) {
+        Intent intent = new Intent(MainActivity.this, MovieActivity.class);
+        intent.putExtra("movie", Parcels.wrap(movies.get(position)));
+        startActivity(intent);
     }
 }

@@ -5,6 +5,7 @@ import android.content.res.Configuration;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,10 +23,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
     List<Movie> movies;
     Context context;
+    OnItemClickListener onItemClickListener;
 
-    public MovieAdapter(List<Movie> movies, Context context) {
+    public interface OnItemClickListener {
+        void onMovieItemClicked(int position);
+    }
+
+    public MovieAdapter(List<Movie> movies, Context context, OnItemClickListener onItemClickListener) {
         this.movies = movies;
         this.context = context;
+        this.onItemClickListener = onItemClickListener;
     }
 
     @Override
@@ -75,10 +82,16 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             titleTextView = itemView.findViewById(R.id.movie_title_text_view);
             overviewTextView = itemView.findViewById(R.id.movie_overview_text_view);
             posterImageView = itemView.findViewById(R.id.poster_image_view);
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    onItemClickListener.onMovieItemClicked(getAdapterPosition());
+                }
+            });
         }
 
         public void bind(Movie m) {
@@ -99,6 +112,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         }
 
         public void bindFull(Movie m) {
+            titleTextView.setText(m.getTitle());
             Glide.with(context)
                     .load(m.getBackdropPath())
                     .placeholder(R.drawable.placeholder)
@@ -106,4 +120,6 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .into(posterImageView);
         }
     }
+
+
 }

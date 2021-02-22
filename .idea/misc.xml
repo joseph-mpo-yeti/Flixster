@@ -4,11 +4,13 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable/poster_placeholder.xml" value="0.16510416666666666" />
-        <entry key="app/src/main/res/layout-land/item_movie_full_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/layout-land/item_movie_full_layout.xml" value="0.12610229276895943" />
         <entry key="app/src/main/res/layout-land/item_movie_layout.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
-        <entry key="app/src/main/res/layout/item_movie_full_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.29791666666666666" />
+        <entry key="app/src/main/res/layout/activity_movie.xml" value="0.1743659420289855" />
+        <entry key="app/src/main/res/layout/item_movie_full_layout.xml" value="0.14895833333333333" />
         <entry key="app/src/main/res/layout/item_movie_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/menu/movie_list_menu.xml" value="0.27794871794871795" />
       </map>
     </option>
   </component>

@@ -10,12 +10,14 @@ import com.josephmpo.myapplication.MainActivity;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.parceler.Parcel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import okhttp3.Headers;
 
+@Parcel
 public class Movie {
     public static final String TAG = "Movie";
     String title;
@@ -23,6 +25,8 @@ public class Movie {
     String backdropPath;
     String overview;
     Double voteAverage;
+
+    public Movie(){}
 
     public Movie(JSONObject obj) throws JSONException {
         this.title = obj.getString("title");
