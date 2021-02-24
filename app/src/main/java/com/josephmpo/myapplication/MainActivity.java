@@ -2,6 +2,7 @@ package com.josephmpo.myapplication;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.core.app.ActivityOptionsCompat;
 import androidx.core.view.MenuItemCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -90,9 +91,11 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
     }
 
     @Override
-    public void onMovieItemClicked(int position) {
+    public void onMovieItemClicked(int position, View sharedImageView) {
         Intent intent = new Intent(MainActivity.this, MovieActivity.class);
         intent.putExtra("movie", Parcels.wrap(movies.get(position)));
-        startActivity(intent);
+        ActivityOptionsCompat options = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                MainActivity.this, sharedImageView, "poster");
+        startActivity(intent, options.toBundle());
     }
 }

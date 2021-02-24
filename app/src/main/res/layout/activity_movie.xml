@@ -1,16 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:padding="0dp"
+    android:layout_margin="0dp"
+    android:orientation="vertical"
+    android:background="@color/black_bg"
     android:layout_height="match_parent"
     tools:context=".MovieActivity">
 
-<androidx.appcompat.widget.Toolbar
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:id="@+id/movie_toolbar"
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/ivPoster"
+            android:transitionName="poster"
+            android:layout_width="match_parent"
+            android:layout_height="230dp"
+        />
+
+        <com.google.android.youtube.player.YouTubePlayerView
+            android:transitionName="poster"
+            android:layout_width="match_parent"
+            android:layout_height="220dp"
+            android:id="@+id/youtube_player" />
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:padding="16dp"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        android:textSize="24dp"
+        tools:text="Hello"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
     />
 
+    <RatingBar
+        android:id="@+id/ratingBar"
+        style="@android:style/Widget.Material.RatingBar.Indicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:isIndicator="true"
+        android:numStars="10"
+        android:progressBackgroundTint="@color/white"
+        android:max="10"
+        android:rating="9"/>
 
-</RelativeLayout>
+    <TextView
+        android:lineHeight="28dp"
+        android:id="@+id/tvOverview"
+        android:textColor="#A3FFFFFF"
+        android:layout_marginTop="16dp"
+        android:padding="16dp"
+        android:textSize="18sp"
+        tools:text="This the description de de de de d e de de d e de d e de d e de d e de d ed e de d e de d ed e de d e"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+
+</LinearLayout>

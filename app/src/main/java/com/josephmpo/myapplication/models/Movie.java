@@ -20,11 +20,9 @@ import okhttp3.Headers;
 @Parcel
 public class Movie {
     public static final String TAG = "Movie";
-    String title;
-    String posterPath;
-    String backdropPath;
-    String overview;
-    Double voteAverage;
+    String title, posterPath, backdropPath, overview;
+    double voteAverage, popularity;
+    int id;
 
     public Movie(){}
 
@@ -34,6 +32,8 @@ public class Movie {
         this.backdropPath = obj.getString("backdrop_path");
         this.overview = obj.getString("overview");
         this.voteAverage = obj.getDouble("vote_average");
+        this.popularity = obj.getDouble("popularity");
+        this.id = obj.getInt("id");
     }
 
     public static List<Movie> fromJSONArray(JSONArray jsonArray) throws JSONException {
@@ -45,15 +45,6 @@ public class Movie {
         return movies;
     }
 
-    private List<String> extractSizes(JSONArray jsonArray) throws JSONException {
-        List<String> values = new ArrayList<>();
-        for (int i = 0; i < jsonArray.length(); i++) {
-            values.add(jsonArray.getString(i));
-        }
-
-        return values;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -62,12 +53,20 @@ public class Movie {
         return String.format("https://image.tmdb.org/t/p/original%s", posterPath);
     }
 
-    public Double getVoteAverage() {
+    public double getVoteAverage() {
         return voteAverage;
     }
 
     public String getBackdropPath() {
         return String.format("https://image.tmdb.org/t/p/original%s", backdropPath);
+    }
+
+    public double getPopularity() {
+        return popularity;
+    }
+
+    public int getId() {
+        return id;
     }
 
     public String getOverview() {

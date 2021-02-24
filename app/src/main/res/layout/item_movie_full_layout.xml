@@ -13,12 +13,29 @@
         android:layout_margin="4dp"
         />
 
+    <RelativeLayout
+        android:layout_margin="4dp"
+        android:background="#45393939"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        >
+
+        <ImageView
+            android:src="@drawable/ic_baseline_play_circle_outline_24"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:layout_centerInParent="true"
+            android:layout_margin="4dp"
+            />
+
+    </RelativeLayout>
+
 
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Title"
-        android:textColor="@color/white"
+        android:textColor="#C1BDBD"
         android:textSize="18sp"
         android:textAlignment="center"
         android:background="#9A393939"

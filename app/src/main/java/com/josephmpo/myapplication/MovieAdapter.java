@@ -13,6 +13,9 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.resource.bitmap.CenterCrop;
+import com.bumptech.glide.load.resource.bitmap.RoundedCorners;
+import com.bumptech.glide.request.RequestOptions;
 import com.josephmpo.myapplication.models.Movie;
 
 import org.jetbrains.annotations.NotNull;
@@ -25,14 +28,17 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
     Context context;
     OnItemClickListener onItemClickListener;
 
+    RequestOptions requestOptions;
+
     public interface OnItemClickListener {
-        void onMovieItemClicked(int position);
+        void onMovieItemClicked(int position, View view);
     }
 
     public MovieAdapter(List<Movie> movies, Context context, OnItemClickListener onItemClickListener) {
         this.movies = movies;
         this.context = context;
         this.onItemClickListener = onItemClickListener;
+        requestOptions = (new RequestOptions()).transform(new CenterCrop(), new RoundedCorners(16));
     }
 
     @Override
@@ -80,6 +86,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
         TextView overviewTextView;
         ImageView posterImageView;
 
+
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             titleTextView = itemView.findViewById(R.id.movie_title_text_view);
@@ -89,7 +96,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    onItemClickListener.onMovieItemClicked(getAdapterPosition());
+                    onItemClickListener.onMovieItemClicked(getAdapterPosition(), (View) posterImageView);
                 }
             });
         }
@@ -101,12 +108,13 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                 Glide.with(context)
                         .load(m.getBackdropPath())
                         .placeholder(R.drawable.placeholder)
-                        .centerCrop()
+                        .apply(requestOptions)
                         .into(posterImageView);
             } else {
                 Glide.with(context)
                         .load(m.getPosterPath())
                         .placeholder(R.drawable.placeholder_portrait)
+                        .apply(requestOptions)
                         .into(posterImageView);
             }
         }
@@ -117,6 +125,7 @@ public class MovieAdapter extends RecyclerView.Adapter<MovieAdapter.ViewHolder> 
                     .load(m.getBackdropPath())
                     .placeholder(R.drawable.placeholder)
                     .centerCrop()
+                    .apply(requestOptions)
                     .into(posterImageView);
         }
     }
