@@ -25,16 +25,14 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 #### Portrait
 
 <div style="display: inline-flex;">
-  <img src="demo_1.gif" width="220" style="margin: 25px;"/>
-  <img src="demo_2.gif" width="220" style="margin: 25px;" />
   <img src="demo_6.gif" width="220" style="margin: 25px;" />
+  <img src="demo_7.gif" width="220" style="margin: 25px;" />
 </div>
 
 #### Landscape
 
 <img src="demo_3.gif" height="400" />
 <img src="demo_4.gif" height="400" />
-<img src="demo_5.gif" height="400" />
 
 ### Notes
 

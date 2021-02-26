@@ -17,10 +17,10 @@
         android:roundIcon="@drawable/flixster_icon"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
+        <activity android:name=".ReviewsActivity"></activity>
         <activity
             android:name=".MovieActivity"
-            android:configChanges="orientation|screenSize|keyboardHidden"
-        />
+            android:configChanges="orientation|screenSize|keyboardHidden" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
