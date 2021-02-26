@@ -17,14 +17,23 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
   - [x] When clicking on a popular movie (i.e. a movie voted for more than 5 stars) the video should be played immediately.
   - [x] Less popular videos rely on the detailed page should show an image preview that can initiate playing a YouTube video.
 - [x] Add a play icon overlay to popular movies to indicate that the movie can be played (1 point).
-- [ ] Apply data binding for views to help remove boilerplate code. (1 point)
+- [x] Apply data binding for views to help remove boilerplate code. (1 point)
 - [x] Add a rounded corners for the images using the Glide transformations. (1 point)
 
 ### App Walkthough GIF
 
-`TODO://` Add the URL to your animated app walkthough `gif` in the image tag below, `YOUR_GIF_URL_HERE`. Make sure the gif actually renders and animates when viewing this README. (🚫 Remove this paragraph after after adding gif)
+#### Portrait
 
-<img src="YOUR_GIF_URL_HERE" width=250><br>
+<div style="display: inline-flex;">
+  <img src="https://i.imgur.com/9yu84Lu.gif" width="300" />
+  <img src="https://i.imgur.com/pCGEd8A.gif" width="300" style="margin-left: 10px;" />
+</div>
+
+#### Landscape
+
+<img src="https://i.imgur.com/K2QT2h3.gif" height="300" />
+<img src="https://i.imgur.com/3u4a5Yk.gif" height="300" />
+<img src="https://i.imgur.com/xzXhkT3.gif" height="300" />
 
 ### Notes
 
