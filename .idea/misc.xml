@@ -3,17 +3,19 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_outline_24.xml" value="0.2984375" />
+        <entry key="app/src/main/res/drawable/cornered_background.xml" value="0.5" />
+        <entry key="app/src/main/res/drawable/ic_baseline_play_circle_outline_24.xml" value="0.5" />
+        <entry key="app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.2984375" />
         <entry key="app/src/main/res/drawable/poster_placeholder.xml" value="0.16510416666666666" />
         <entry key="app/src/main/res/layout-land/activity_movie.xml" value="0.44583333333333336" />
-        <entry key="app/src/main/res/layout-land/item_movie_full_layout.xml" value="0.12610229276895943" />
-        <entry key="app/src/main/res/layout-land/item_movie_layout.xml" value="0.5" />
+        <entry key="app/src/main/res/layout-land/item_movie_full_layout.xml" value="0.215625" />
+        <entry key="app/src/main/res/layout-land/item_movie_layout.xml" value="0.2619934451231558" />
         <entry key="app/src/main/res/layout/activity_main.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_movie.xml" value="0.5" />
         <entry key="app/src/main/res/layout/activity_movie_landscape.xml" value="0.1793478260869565" />
-        <entry key="app/src/main/res/layout/item_movie_full_layout.xml" value="0.192481884057971" />
-        <entry key="app/src/main/res/layout/item_movie_layout.xml" value="0.5" />
-        <entry key="app/src/main/res/menu/movie_list_menu.xml" value="0.27794871794871795" />
+        <entry key="app/src/main/res/layout/item_movie_full_layout.xml" value="0.1875" />
+        <entry key="app/src/main/res/layout/item_movie_layout.xml" value="0.1875" />
+        <entry key="app/src/main/res/menu/movie_list_menu.xml" value="0.28229166666666666" />
       </map>
     </option>
   </component>

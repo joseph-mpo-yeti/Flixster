@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/black_bg"
+    android:layout_margin="2dp"
+    android:background="@drawable/cornered_background"
     xmlns:tools="http://schemas.android.com/tools">
 
     <ImageView
@@ -19,7 +20,7 @@
         tools:text="Jungle Book"
         android:textStyle="bold"
         android:layout_marginTop="8dp"
-        android:textColor="@color/white"
+        android:textColor="#C5C5C5"
         android:textSize="24sp"
         android:layout_toEndOf="@id/poster_image_view"
         android:id="@+id/movie_title_text_view"
@@ -36,7 +37,7 @@
         android:layout_marginStart="0dp"
         android:layout_marginTop="1dp"
         android:maxLines="8"
-        android:textColor="@color/white"
+        android:textColor="#C5C5C5"
         android:textSize="18sp"
         android:ellipsize="end"
         android:layout_toEndOf="@id/poster_image_view"

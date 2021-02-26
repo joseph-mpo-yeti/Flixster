@@ -1,5 +1,6 @@
 package com.josephmpo.myapplication;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.app.ActivityOptionsCompat;
@@ -8,19 +9,23 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.codepath.asynchttpclient.AsyncHttpClient;
 import com.codepath.asynchttpclient.RequestParams;
 import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
+import com.josephmpo.myapplication.databinding.ActivityMainBinding;
 import com.josephmpo.myapplication.models.Movie;
 
+import org.jetbrains.annotations.NotNull;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -38,20 +43,24 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
     public static final String API_KEY = "a07e22bc18f5cb106bfe4cc1f83ad8ed";
     public static final String TAG = "MainActivity";
     List<Movie> movies;
+    ActivityMainBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        View root = binding.getRoot();
+        setContentView(root);
 
         movies = new ArrayList<>();
 
         MovieAdapter adapter = new MovieAdapter(movies, this, this);
-        RecyclerView rv = findViewById(R.id.movies_rv);
 
-        rv.setAdapter(adapter);
-        rv.setLayoutManager(new LinearLayoutManager(this));
+        binding.moviesRv.setAdapter(adapter);
+        binding.moviesRv.setLayoutManager(new LinearLayoutManager(this));
 
+        setSupportActionBar(binding.toolbar);
         getSupportActionBar().setTitle("Now Playing 🍿");
 
         AsyncHttpClient client = new AsyncHttpClient();
@@ -81,13 +90,9 @@ public class MainActivity extends AppCompatActivity implements MovieAdapter.OnIt
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.movie_list_menu, menu);
-        MenuItem search = menu.findItem(R.id.app_bar_search);
-        final View searchView = search.getActionView();
-        search.expandActionView();
-        searchView.requestFocus();
-        return super.onCreateOptionsMenu(menu);
+    protected void onDestroy() {
+        super.onDestroy();
+        binding = null;
     }
 
     @Override

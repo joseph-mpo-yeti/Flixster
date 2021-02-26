@@ -25,6 +25,7 @@ import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
 import com.google.android.youtube.player.YouTubePlayerView;
+import com.josephmpo.myapplication.databinding.ActivityMovieBinding;
 import com.josephmpo.myapplication.models.Movie;
 
 import org.json.JSONArray;
@@ -41,72 +42,70 @@ public class MovieActivity extends YouTubeBaseActivity {
     public static final String MOVIE_DB_API_KEY = "MOVIE_DB_API_KEY";
     public static final String TAG = "MovieActivity";
     private Context context;
-    private YouTubePlayerView playerView;
     private static YouTubePlayer youTubePlayer;
     private static Movie movie;
-    private ImageView ivPoster;
-    private TextView tvTitle;
-    private TextView tvOverview;
-    private RatingBar ratingBar;
     private int minPlayerHeight;
     private RequestOptions requestOptions;
+    ActivityMovieBinding amb;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie);
+
+        amb = ActivityMovieBinding.inflate(getLayoutInflater());
+        View root = amb.getRoot();
+        setContentView(root);
+
         context = getApplicationContext();
 
         requestOptions = new RequestOptions();
         requestOptions = requestOptions.transform(new CenterCrop(), new RoundedCorners(16));
 
-        playerView = findViewById(R.id.youtube_player);
-        minPlayerHeight = playerView.getLayoutParams().height;
+        minPlayerHeight = amb.youtubePlayer.getLayoutParams().height;
 
         movie = Parcels.unwrap(getIntent().getParcelableExtra("movie"));
 
         initYouTubePlayer();
 
-        tvTitle = findViewById(R.id.tvTitle);
-        tvOverview = findViewById(R.id.tvOverview);
-        ratingBar = findViewById(R.id.ratingBar);
-        ivPoster = findViewById(R.id.ivPoster);
-
-        tvTitle.setText(movie.getTitle());
-        tvOverview.setText(movie.getOverview());
-        ratingBar.setRating((float) movie.getVoteAverage());
+        amb.tvTitle.setText(movie.getTitle());
+        amb.tvOverview.setText(movie.getOverview());
+        amb.ratingBar.setRating((float) movie.getVoteAverage());
 
         updateUI();
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        amb = null;
+    }
 
     public void updateUI(){
-        playerView.setMinimumHeight(0);
-
-        playerView.setVisibility(View.VISIBLE);
-        ivPoster.setVisibility(View.GONE);
+        amb.youtubePlayer.setMinimumHeight(0);
+        amb.youtubePlayer.setVisibility(View.VISIBLE);
+        amb.ivPoster.setVisibility(View.GONE);
 
         if(getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE){
-            playerView.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
-            ivPoster.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            amb.youtubePlayer.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
+            amb.ivPoster.getLayoutParams().height = ViewGroup.LayoutParams.MATCH_PARENT;
             Glide.with(getApplicationContext()).load(movie.getBackdropPath())
                     .placeholder(R.drawable.placeholder)
                     .apply(requestOptions)
-                    .into(ivPoster);
-            tvTitle.setVisibility(View.GONE);
-            tvOverview.setVisibility(View.GONE);
-            ratingBar.setVisibility(View.GONE);
+                    .into(amb.ivPoster);
+            amb.tvTitle.setVisibility(View.GONE);
+            amb.tvOverview.setVisibility(View.GONE);
+            amb.ratingBar.setVisibility(View.GONE);
         } else {
-            ivPoster.getLayoutParams().height = minPlayerHeight;
-            playerView.getLayoutParams().height = minPlayerHeight;
+            amb.ivPoster.getLayoutParams().height = minPlayerHeight;
+            amb.youtubePlayer.getLayoutParams().height = minPlayerHeight;
             Glide.with(getApplicationContext()).load(movie.getBackdropPath())
                 .placeholder(R.drawable.placeholder)
                 .centerInside()
                 .apply(requestOptions)
-                .into(ivPoster);
-            tvTitle.setVisibility(View.VISIBLE);
-            tvOverview.setVisibility(View.VISIBLE);
-            ratingBar.setVisibility(View.VISIBLE);
+                .into(amb.ivPoster);
+            amb.tvTitle.setVisibility(View.VISIBLE);
+            amb.tvOverview.setVisibility(View.VISIBLE);
+            amb.ratingBar.setVisibility(View.VISIBLE);
         }
     }
 
@@ -130,8 +129,8 @@ public class MovieActivity extends YouTubeBaseActivity {
                 new MyMovieJSONHandler());
     }
 
-    private void initPlayer(YouTubePlayerView playerView, String movieID) {
-        playerView.initialize(
+    private void initPlayer(String movieID) {
+        amb.youtubePlayer.initialize(
                 YOUTUBE_API_KEY,
                 new YouTubePlayer.OnInitializedListener() {
                     @Override
@@ -154,8 +153,8 @@ public class MovieActivity extends YouTubeBaseActivity {
                             YouTubeInitializationResult youTubeInitializationResult)
                     {
                         Log.d(TAG, "onInitializationFailure: Something went wrong");
-                        ivPoster.setVisibility(View.VISIBLE);
-                        playerView.setVisibility(View.GONE);
+                        amb.ivPoster.setVisibility(View.VISIBLE);
+                        amb.youtubePlayer.setVisibility(View.GONE);
                         String message = "";
                         if(youTubeInitializationResult.toString().equals("SERVICE_VERSION_UPDATE_REQUIRED")){
                             message = "Please, update Google Play in order to view trailers";
@@ -182,20 +181,20 @@ public class MovieActivity extends YouTubeBaseActivity {
                 if(youtubeResults.length() > 0){
                     JSONObject trailer = youtubeResults.getJSONObject(0);
                     String movieID = trailer.getString("source");
-                    initPlayer(playerView, movieID);
+                    initPlayer(movieID);
                 } else {
                     Toast.makeText(
                             context,
                             String.format("No trailer available for %s", movie.getTitle()),
                             Toast.LENGTH_SHORT)
                             .show();
-                    ivPoster.setVisibility(View.VISIBLE);
-                    playerView.setVisibility(View.GONE);
+                    amb.ivPoster.setVisibility(View.VISIBLE);
+                    amb.youtubePlayer.setVisibility(View.GONE);
                 }
             } catch (JSONException e) {
                 e.printStackTrace();
-                ivPoster.setVisibility(View.VISIBLE);
-                playerView.setVisibility(View.GONE);
+                amb.ivPoster.setVisibility(View.VISIBLE);
+                amb.youtubePlayer.setVisibility(View.GONE);
             }
         }
 
