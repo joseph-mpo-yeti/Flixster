@@ -25,25 +25,25 @@ Flixster is an app that allows users to browse movies from the [The Movie Databa
 #### Portrait
 
 <div style="display: inline-flex;">
-  <img src="demo_1.gif" width="300" />
-  <img src="demo_2.gif" width="300" style="margin-left: 25px;" />
+  <img src="demo_1.gif" width="300" style="margin: 25px;"/>
+  <img src="demo_2.gif" width="300" style="margin: 25px;" />
 </div>
 
 #### Landscape
 
-<img src="demo_3.gif" height="300" />
-<img src="demo_4.gif" height="300" />
-<img src="demo_5.gif" height="300" />
+<img src="demo_3.gif" height="500" />
+<img src="demo_4.gif" height="500" />
+<img src="demo_5.gif" height="500" />
 
 ### Notes
 
 Describe any challenges encountered while building the app.
 
 ## Open-source libraries used
-- [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
-- [YouTubePlayerView](https://github.com/bumptech/glide) - Image loading and caching library for Android
 - [Glide](https://github.com/bumptech/glide) - Image loading and caching library for Android
-- [Parceler](https://github.com/bumptech/glide) - Image loading and caching library for Android
+- [Parceler](https://github.com/johncarl81/parceler) - Parcelable library for Android
+- [YouTubePlayerView](https://developers.google.com/youtube/android/player/reference/com/google/android/youtube/player/YouTubePlayerView.html) - YouTube video library for Android
+- [Android Async HTTP](https://github.com/codepath/CPAsyncHttpClient) - Simple asynchronous HTTP requests with JSON parsing
 
 ## Flixster Part 1
 
