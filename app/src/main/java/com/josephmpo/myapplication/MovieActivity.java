@@ -1,17 +1,17 @@
 package com.josephmpo.myapplication;
 
 import androidx.annotation.NonNull;
+import androidx.core.app.ActivityOptionsCompat;
+import androidx.core.util.Pair;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.RatingBar;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
@@ -24,7 +24,6 @@ import com.codepath.asynchttpclient.callback.JsonHttpResponseHandler;
 import com.google.android.youtube.player.YouTubeBaseActivity;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayerView;
 import com.josephmpo.myapplication.databinding.ActivityMovieBinding;
 import com.josephmpo.myapplication.models.Movie;
 
@@ -72,12 +71,35 @@ public class MovieActivity extends YouTubeBaseActivity {
         amb.ratingBar.setRating((float) movie.getVoteAverage());
 
         updateUI();
+
+        amb.seeReviewsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MovieActivity.this, ReviewsActivity.class);
+                intent.putExtra("id", movie.getId());
+                intent.putExtra("rating", movie.getVoteAverage());
+                intent.putExtra("title", movie.getTitle());
+
+                Pair<View, String> title = Pair.create((View) amb.tvTitle, "movie_title");
+                Pair<View, String> rating = Pair.create((View) amb.ratingBar, "rating");
+
+                ActivityOptionsCompat optionsCompat = ActivityOptionsCompat.makeSceneTransitionAnimation(
+                        MovieActivity.this, title, rating);
+                startActivity(intent, optionsCompat.toBundle());
+            }
+        });
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         amb = null;
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        finishAfterTransition();
     }
 
     public void updateUI(){

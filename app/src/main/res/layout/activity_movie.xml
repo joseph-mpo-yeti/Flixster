@@ -8,6 +8,7 @@
     android:orientation="vertical"
     android:background="@color/black_bg"
     android:layout_height="match_parent"
+    android:isScrollContainer="true"
     tools:context=".MovieActivity">
 
     <RelativeLayout
@@ -31,6 +32,7 @@
 
     <TextView
         android:id="@+id/tvTitle"
+        android:transitionName="movie_title"
         android:padding="16dp"
         android:textColor="@color/white"
         android:textStyle="bold"
@@ -46,6 +48,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
+        android:transitionName="rating"
         android:isIndicator="true"
         android:numStars="10"
         android:progressBackgroundTint="@color/white"
@@ -59,8 +62,26 @@
         android:layout_marginTop="16dp"
         android:padding="16dp"
         android:textSize="18sp"
+        android:layout_weight="1"
         tools:text="This the description de de de de d e de de d e de d e de d e de d e de d ed e de d e de d ed e de d e"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"/>
+
+
+        <TextView
+            android:id="@+id/see_reviews_btn"
+            android:text="See reviews"
+            android:textColor="@color/white"
+            android:padding="16dp"
+            android:textAlignment="center"
+            android:textAllCaps="true"
+            android:elevation="2dp"
+            android:textStyle="bold"
+            android:textSize="16sp"
+            android:background="@color/teal_700"
+            android:layout_margin="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
 
 </LinearLayout>

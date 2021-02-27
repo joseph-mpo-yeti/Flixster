@@ -13,4 +13,32 @@ public class Review {
         this.id = id;
         this.url = url;
     }
+
+    public ReviewAuthor getReviewAuthor() {
+        return reviewAuthor;
+    }
+
+    public String getAuthor() {
+        return author;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public String getCreated_at() {
+        return created_at;
+    }
+
+    public String getUpdated_at() {
+        return updated_at;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public String getUrl() {
+        return url;
+    }
 }
